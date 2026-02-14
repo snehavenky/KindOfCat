@@ -1,6 +1,18 @@
 import streamlit as st
 import google.generativeai as genai
+import streamlit as st
+import google.generativeai as genai
 
+# --- API SETUP ---
+# This looks for a secret called "GEMINI_API_KEY"
+if "GEMINI_API_KEY" in st.secrets:
+    api_key = st.secrets["GEMINI_API_KEY"]
+else:
+    st.error("Please set the GEMINI_API_KEY in Streamlit Secrets!")
+    st.stop()
+
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-2.0-flash')
 # --- APP CONFIGURATION ---
 st.set_page_config(page_title="What Cat Are You?", page_icon="🐾")
 
@@ -48,10 +60,6 @@ if st.button("Reveal My Inner Cat"):
         st.warning("Please answer all the questions first!")
     else:
         try:
-            # Configure Gemini
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-2.5-flash')
-
             # Create the Prompt
             prompt = f"""
             Based on these personality traits:
