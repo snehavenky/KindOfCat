@@ -50,7 +50,7 @@ if st.button("Reveal My Inner Cat"):
         try:
             # Configure Gemini
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-1.5-latest')
+            model = genai.GenerativeModel('gemini-2.5-flash')
 
             # Create the Prompt
             prompt = f"""
