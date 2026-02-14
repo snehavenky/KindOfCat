@@ -18,8 +18,6 @@ st.set_page_config(page_title="What Cat Are You?", page_icon="🐾")
 
 # Sidebar for API Key
 with st.sidebar:
-    api_key = st.text_input("Enter your Gemini API Key:", type="password")
-    st.info("Get an API key at [Google AI Studio](https://aistudio.google.com/)")
     if st.sidebar.button("List Available Models"):
      genai.configure(api_key=api_key)
      models = genai.list_models()
